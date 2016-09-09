@@ -6,7 +6,8 @@ var config = {
   context: __dirname,
 
   entry: {
-    javascript: './src/index.js'
+    javascript: './src/index.js',
+    html: './src/index.html',
   },
 
   output: {
@@ -26,8 +27,13 @@ var config = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: ['babel?presets[]=es2015']
-      }
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.html$/,
+        exclude: /node_modules/,
+        loader: 'file?name=[name].[ext]',
+      },
     ],
     plugins: [
       new webpack.optimize.UglifyJsPlugin({

@@ -4,7 +4,7 @@
   "description": "Coding session React.js",
   "main": "src/index.js",
   "scripts": {
-    "start": "npm run build && node dist/index.js",
+    "start": "webpack-dev-server --progress --colors --inline --quiet",
     "lint": "eslint src/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
@@ -13,11 +13,20 @@
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.14.0",
+    "babel-core": "^6.14.0",
     "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-1": "^6.13.0",
     "eslint": "^3.4.0",
     "eslint-loader": "^1.5.0",
     "eslint-plugin-react": "^6.2.0",
-    "webpack": "^1.13.2"
+    "file-loader": "^0.9.0",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.1"
+  },
+  "dependencies": {
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1"
   }
 }
