@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 var webpack = require('webpack');
 
 var config = {
@@ -13,6 +15,20 @@ var config = {
   },
 
   module: {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader'
+      }
+    ],
+    loaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loaders: ['babel?presets[]=es2015']
+      }
+    ],
     plugins: [
       new webpack.optimize.UglifyJsPlugin({
         compress: { warnings: false }
