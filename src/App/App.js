@@ -7,13 +7,21 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { lat: 0, long: 0, zoom: 3 };
+
+    this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
+  }
+
+  onSuggestionSelected(event, { suggestion: { coordinates } }) {
+    // eslint-disable-next-line
+    const [long, lat, ...rest] = coordinates;
+    this.setState({ lat, long, zoom: 14 });
   }
 
   render() {
     const { lat, long, zoom } = this.state;
     return (
       <div>
-        <AutocompleteInput />
+        <AutocompleteInput onSuggestionSelected={this.onSuggestionSelected} />
         <MapComponent lat={lat} long={long} zoom={zoom} />
       </div>
     );

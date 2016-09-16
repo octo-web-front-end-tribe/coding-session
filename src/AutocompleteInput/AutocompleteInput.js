@@ -70,6 +70,7 @@ class AutocompleteInput extends Component {
         suggestions={this.state.result}
         onSuggestionsFetchRequested={this.changeAddress}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+        onSuggestionSelected={this.props.onSuggestionSelected}
         getSuggestionValue={this.getSuggestionValue}
         renderSuggestion={this.renderSuggestion}
         inputProps={inputProps}
@@ -77,5 +78,9 @@ class AutocompleteInput extends Component {
     );
   }
 }
+
+AutocompleteInput.propTypes = {
+  onSuggestionSelected: React.PropTypes.func,
+};
 
 export default AutocompleteInput;
