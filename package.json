@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --progress --colors --inline --quiet --hot",
     "lint": "eslint src/**/*.js",
-    "test": "mocha --reporter nyan -r babel-core/register -r ignore-styles 'src/*.spec.js'",
+    "test": "mocha --reporter nyan -r babel-core/register -r ignore-styles 'src/**/*.spec.js'",
+    "test-watch": "npm test -- --watch",
     "build": "webpack"
   },
   "author": "Octo WebF",
