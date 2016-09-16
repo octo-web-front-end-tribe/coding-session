@@ -1,22 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDom from 'react-dom';
-
-class HelloWorld extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { message: 'Hello React!' }
-  }
-
-  render() {
-    return (
-      <div>
-        {this.state.message}
-      </div>
-    )
-  }
-}
+import AutocompleteInput from './AutocompleteInput.js';
 
 ReactDom.render(
-  <HelloWorld />,
+  <AutocompleteInput />,
   document.getElementById('root')
 )
