@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --progress --colors --inline --quiet --hot",
     "lint": "eslint src/**/*.js",
-    "test": "mocha --reporter nyan -r babel-core/register -r ignore-styles 'src/**/*.spec.js'",
+    "test": "mocha --reporter nyan -r babel-core/register -r jsdom-global/register -r ignore-styles 'src/**/*.spec.js'",
     "test-watch": "npm test -- --watch",
     "build": "webpack"
   },
@@ -20,6 +20,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-1": "^6.13.0",
     "chai": "^3.5.0",
+    "css-loader": "^0.25.0",
     "enzyme": "^2.4.1",
     "eslint": "^3.4.0",
     "eslint-loader": "^1.5.0",
@@ -27,16 +28,20 @@
     "fetch-mock": "^5.1.2",
     "file-loader": "^0.9.0",
     "ignore-styles": "^5.0.1",
+    "jsdom-global": "^2.1.0",
     "mocha": "^3.0.2",
     "react-addons-test-utils": "^15.3.1",
     "react-hot-loader": "^3.0.0-beta.3",
+    "style-loader": "^0.13.1",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.15.1"
   },
   "dependencies": {
+    "leaflet": "^0.7.7",
     "react": "^15.3.1",
     "react-autosuggest": "^6.0.3",
     "react-dom": "^15.3.1",
+    "react-leaflet": "^0.12.2",
     "whatwg-fetch": "^1.0.0"
   }
 }

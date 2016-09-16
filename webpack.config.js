@@ -34,6 +34,11 @@ var config = {
         exclude: /node_modules/,
         loader: 'file?name=[name].[ext]',
       },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        loader: 'style-loader!css-loader'
+      }
     ],
     plugins: [
       new webpack.optimize.UglifyJsPlugin({
