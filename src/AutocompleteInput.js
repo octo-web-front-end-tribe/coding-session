@@ -33,7 +33,7 @@ class AutocompleteInput extends Component {
       return this.setState({ result: [] });
     }
 
-    fetch(`https://api-adresse.data.gouv.fr/search/?q=${value}`, { method: 'get' })
+    return fetch(`https://api-adresse.data.gouv.fr/search/?q=${value}`, { method: 'get' })
       .then((response) => {
         return response
           .json()
