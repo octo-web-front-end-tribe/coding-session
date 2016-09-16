@@ -1,22 +1,39 @@
 import React, { Component } from 'react';
+import Autosuggest from 'react-autosuggest';
 
 class AutocompleteInput extends Component {
   constructor(props) {
     super(props)
-    this.state = { result: [] }
+    this.state = { result: [], inputValue: '' };
 
     // Bind this to override context in changeAddress (otherwise this === <input>)
     this.changeAddress = this.changeAddress.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
   }
 
-  changeAddress(event) {
-    const query = event.target.value;
+  onChange(event, { newValue }) {
+    this.setState({
+      inputValue: newValue,
+    });
+  }
 
-    if (!query.length) {
+  getSuggestionValue(suggestion) {
+    return suggestion.label;
+  }
+
+  renderSuggestion(suggestion) {
+    return (
+      <span>{suggestion.label}</span>
+    );
+  }
+
+  changeAddress({value}) {
+    if (!value.length) {
       return this.setState({ result: [] });
     }
 
-    fetch(`https://api-adresse.data.gouv.fr/search/?q=${query}`, { method: 'get' })
+    fetch(`https://api-adresse.data.gouv.fr/search/?q=${value}`, { method: 'get' })
       .then((response) => {
         return response
           .json()
@@ -34,30 +51,28 @@ class AutocompleteInput extends Component {
       });
   }
 
-  renderItem(item, idx) {
-    return (
-      <li key={idx}>
-        {item.label}
-      </li>
-    );
-  }
-
-  renderResult(err, data) {
-    if (err) {
-      return <div>{ err.message }</div>
-    }
-
-    return <ul>{ data.map(this.renderItem) }</ul>
+  onSuggestionsClearRequested() {
+    this.setState({
+      result: []
+    });
   }
 
   render() {
-    return (
-      <div>
-        <label htmlFor="address">Enter an address : </label>
-        <input onChange={this.changeAddress} className="test" id="address" />
+    const inputProps = {
+      placeholder: 'Ex: 50 avenue des champs élysées',
+      value: this.state.inputValue,
+      onChange: this.onChange
+    };
 
-        { this.renderResult(this.state.err, this.state.result) }
-      </div>
+    return (
+      <Autosuggest
+        suggestions={this.state.result}
+        onSuggestionsFetchRequested={this.changeAddress}
+        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+        getSuggestionValue={this.getSuggestionValue}
+        renderSuggestion={this.renderSuggestion}
+        inputProps={inputProps}
+      />
     );
   }
 }
