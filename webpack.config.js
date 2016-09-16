@@ -35,10 +35,21 @@ var config = {
         loader: 'file?name=[name].[ext]',
       },
       {
-        test: /\.css$/,
+        test: /\.global.css$/,
         exclude: /node_modules/,
         loader: 'style-loader!css-loader'
-      }
+      },
+      {
+        test: /\.css$/,
+        exclude: [
+          /node_modules/,
+          /\.global.css$/
+        ],
+        loaders: [
+          'style-loader',
+          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+        ],
+      },
     ],
     plugins: [
       new webpack.optimize.UglifyJsPlugin({

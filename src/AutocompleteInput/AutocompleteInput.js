@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Autosuggest from 'react-autosuggest';
-import './AutocompleteInput.css';
+import './AutocompleteInput.global.css';
 
 class AutocompleteInput extends Component {
   constructor(props) {
