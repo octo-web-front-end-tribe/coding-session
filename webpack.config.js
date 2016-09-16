@@ -40,7 +40,9 @@ var config = {
         compress: { warnings: false }
       })
     ]
-  }
+  },
+
+  devtool: 'source-map'
 };
 
 module.exports = config;
