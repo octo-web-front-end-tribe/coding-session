@@ -6,7 +6,7 @@ var config = {
   context: __dirname,
 
   entry: {
-    javascript: './src/index.js',
+    javascript: ['whatwg-fetch', './src/index.js'],
     html: './src/index.html',
   },
 
